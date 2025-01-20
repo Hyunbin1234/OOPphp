@@ -1,0 +1,38 @@
+<?php
+session_start();
+require_once '../helpers/auth_helper.php';
+requireGuest();
+
+$errorMessage= "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../controllers/AuthController.php';
+    $authController = new AuthController();
+    $errorMessage = $authController->register($_POST['name'], $_POST['phone'], $_POST['password'], $_POST['address']);
+}
+
+include 'partials/header.php';
+?>
+<h1>Register</h1>
+<form method="POST">
+    <?php
+
+    if (!empty($errorMessage)) {
+    ?>
+        <p><?= $errorMessage ?></p>
+    <?php
+    }
+    ?>
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" placeholder="Name"><br>
+    <label for="phone">phone:</label><br>
+    <input type="text" name="phone" placeholder="Phone"><br>
+    <label for="password">password:</label><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    <label for="address">Address</label><br>
+    <input type="text" name="address" placeholder="Address"><br>
+    <button type="submit">Register</button>
+</form>
+<a href="login.php">Login</a>
+
+<?php include 'partials/footer.php'; ?>
