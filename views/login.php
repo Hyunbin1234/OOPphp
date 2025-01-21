@@ -37,7 +37,7 @@ include 'partials/header.php';
             </div>
         </form>
         <p class="text-center text-secondary">
-            Already have an account? <a href="register.php">Register</a>
+            Don't have an account? <a href="register.php">Register</a>
         </p>
     </div>
 </main>
